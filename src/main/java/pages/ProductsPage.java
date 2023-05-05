@@ -11,7 +11,6 @@ public class ProductsPage extends BasePage {
     private final Locator pageTitleElement = page.locator("[class=\"title\"]");
     private final Locator shoppingCartElement = page.locator("[class=\"shopping_cart_link\"]");
     private final Locator sortItemsDropdown = page.locator("select[data-test=\"product_sort_container\"]");
-
     private final List<Locator> items = page.locator("[class=\"inventory_item\"]").all();
 
 
@@ -42,6 +41,10 @@ public class ProductsPage extends BasePage {
 
     public void validateAddedItems(String numberOfItems) {
         this.checkElementText(shoppingCartElement, numberOfItems);
+    }
+
+    public void continueToCart() {
+        this.clickElement(shoppingCartElement);
     }
 
 }

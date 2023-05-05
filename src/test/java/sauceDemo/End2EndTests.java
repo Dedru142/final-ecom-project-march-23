@@ -1,8 +1,7 @@
 package sauceDemo;
 
 import org.testng.annotations.Test;
-import pages.LoginPage;
-import pages.ProductsPage;
+import pages.*;
 
 public class End2EndTests extends BaseTest {
     @Test
@@ -22,6 +21,26 @@ public class End2EndTests extends BaseTest {
         productsPage.validateAddedItems("1");
         productsPage.chooseItem("Sauce Labs Onesie");
         productsPage.validateAddedItems("2");
+        productsPage.continueToCart();
+
+        YourCartPage yourCartPage = new YourCartPage(page);
+        yourCartPage.assertThatPageUrl("https://www.saucedemo.com/cart.html");
+        yourCartPage.validateTitle("Your Cart");
+        yourCartPage.continueToCheckout();
+
+        Checkout checkout = new Checkout(page);
+        checkout.assertEqualsPageUrl("https://www.saucedemo.com/checkout-step-one.html");
+        checkout.validateTitle("Checkout: Your Information");
+        checkout.fillCheckoutForm("user", "asd", "123");
+
+        CheckoutOverview checkoutOverview = new CheckoutOverview(page);
+        checkoutOverview.assertThatPageUrl("https://www.saucedemo.com/checkout-step-two.html");
+        checkoutOverview.validateTitle("Checkout: Overview");
+        checkoutOverview.finishOverview();
+
+        CheckoutComplete checkoutComplete = new CheckoutComplete(page);
+        checkoutComplete.assertEqualsPageUrl("https://www.saucedemo.com/checkout-complete.html");
+        checkoutComplete.validateTitle("Checkout: Complete!");
 
     }
 }

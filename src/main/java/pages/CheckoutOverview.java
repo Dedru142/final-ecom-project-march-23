@@ -3,12 +3,12 @@ package pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
-public class YourCartPage extends BasePage {
+public class CheckoutOverview extends BasePage {
 
+    private final Locator finishButtonElement = page.locator("[data-test=\"finish\"]");
     private final Locator pageTitleElement = page.locator("[class=\"title\"]");
-    private final Locator checkoutElement = page.locator("[data-test=\"checkout\"]");
 
-    public YourCartPage(Page page) {
+    public CheckoutOverview(Page page) {
         super(page);
     }
 
@@ -16,8 +16,8 @@ public class YourCartPage extends BasePage {
         this.checkElementText(pageTitleElement, expectedTitle);
     }
 
-    public void continueToCheckout() {
-        this.clickElement(checkoutElement);
+    public void finishOverview() {
+        this.clickElement(finishButtonElement);
     }
 
 }
