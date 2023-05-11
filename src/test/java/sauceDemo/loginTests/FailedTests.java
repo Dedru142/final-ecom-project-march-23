@@ -40,4 +40,13 @@ public class FailedTests extends BaseTest {
         loginPage.fillLoginForm("not_user", "not_password");
         loginPage.validateLoginErrorMessage("Epic sadface: Username and password do not match any user in this service");
     }
+
+    @Test
+    public void test_05_emptyLogin() {
+        page.navigate("https://www.saucedemo.com/");
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.assertThatPageUrl("https://www.saucedemo.com/");
+        loginPage.fillLoginForm("", "");
+        loginPage.validateLoginErrorMessage("Epic sadface: Username is required");
+    }
 }
