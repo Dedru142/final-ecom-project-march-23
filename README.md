@@ -4,6 +4,6 @@
 
 You'll need to create
 
-- E-2-E Scenario ✓
+- E-2-E Scenario
 - 3 Successful scenarios
 - 5 Failed scenarios
