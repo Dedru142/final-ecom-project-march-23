@@ -10,6 +10,7 @@ public class Checkout extends BasePage {
     private final Locator lastNameElement = page.locator("[data-test=\"lastName\"]");
     private final Locator postalCodeElement = page.locator("[data-test=\"postalCode\"]");
     private final Locator pageTitleElement = page.locator("[class=\"title\"]");
+    private final Locator errorMessageElement = page.locator("[data-test=\"error\"]");
 
     public Checkout(Page page) {
         super(page);
@@ -26,7 +27,7 @@ public class Checkout extends BasePage {
         this.clickElement(continueButtonElement);
     }
 
-    public void continueToOverview() {
-        this.clickElement(continueButtonElement);
+    public void validateCheckoutErrorMessage(String expectedErrorMessage) {
+        this.checkElementText(errorMessageElement, expectedErrorMessage);
     }
 }
