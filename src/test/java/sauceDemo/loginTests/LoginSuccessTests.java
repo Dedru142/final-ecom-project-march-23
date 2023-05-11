@@ -21,4 +21,13 @@ public class LoginSuccessTests extends BaseTest {
         loginPage.assertThatPageUrl("https://www.saucedemo.com/");
         loginPage.fillLoginForm("problem_user", "secret_sauce");
     }
+
+    @Test
+    public void test_03_PerformanceGlitchUserLogin() {
+        page.navigate("https://www.saucedemo.com/");
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.assertThatPageUrl("https://www.saucedemo.com/");
+        loginPage.fillLoginForm("performance_glitch_user", "secret_sauce");
+    }
+
 }

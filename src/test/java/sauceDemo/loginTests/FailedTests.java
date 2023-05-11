@@ -22,4 +22,22 @@ public class FailedTests extends BaseTest {
         loginPage.fillLoginForm("", "secret_sauce");
         loginPage.validateLoginErrorMessage("Epic sadface: Username is required");
     }
+
+    @Test
+    public void test_03_noPasswordLogin() {
+        page.navigate("https://www.saucedemo.com/");
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.assertThatPageUrl("https://www.saucedemo.com/");
+        loginPage.fillLoginForm("standard_user", "");
+        loginPage.validateLoginErrorMessage("Epic sadface: Password is required");
+    }
+
+    @Test
+    public void test_04_nonExistingLogin() {
+        page.navigate("https://www.saucedemo.com/");
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.assertThatPageUrl("https://www.saucedemo.com/");
+        loginPage.fillLoginForm("not_user", "not_password");
+        loginPage.validateLoginErrorMessage("Epic sadface: Username and password do not match any user in this service");
+    }
 }
